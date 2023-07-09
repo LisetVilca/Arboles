@@ -107,8 +107,7 @@ void nivelNodo(nodo *raiz, int nivelActual) {
     }
 }
 
-
-//DETERMINAR NIVEL DEL ÁRBOL
+//DETERMINAR ALTURA (mayor nivel) DEL ÁRBOL
 void nivel_Arbol(nodo *raiz, int nivel, int &nivelMayor) {
     if (raiz != NULL) {
         if (nivel > nivelMayor) nivelMayor = nivel;
@@ -118,43 +117,80 @@ void nivel_Arbol(nodo *raiz, int nivel, int &nivelMayor) {
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 int main(){
 	nodo *raiz = NULL;
 	raiz = new(nodo);
 	int gradoMayor=0;
 	int nivelMayor=1;
+	int op;
 	
-	crearArbol(raiz);
-	cout<<endl<<"PREORDEN: "<<endl;
-	preorden(raiz);
-	cout<<endl<<"INORDEN: "<<endl;
-	inorden(raiz);
-	cout<<endl<<"POSTORDEN: "<<endl;
-	postorden(raiz);
-	cout<<endl<<"GRADOS DE LOS NODOS: "<<endl;
-	gradoNodo(raiz);
-	cout<<endl<<"GRADO DEL ARBOL: ";
-	grado_Arbol(raiz, gradoMayor);
-	cout<<gradoMayor<<endl;
-	cout<<endl<<"NIVEL DE LOS NODOS: "<<endl;
-	nivelNodo(raiz, 1);
-	cout<<endl<<"NIVEL DEL ARBOL: ";
-	nivel_Arbol(raiz, 1, nivelMayor);
-	cout<<nivelMayor<<endl;
+				
 	
+	do{
+		system("cls");
+		cout<<"        M  E  N  U      "<<endl;
+		cout<<"========================"<<endl;
+		cout<<" 1. CREAR ARBOL"<<endl;
+		cout<<" 2. MOSTRAR (PREORDEN)"<<endl;
+		cout<<" 3. MOSTRAR (INORDEN)"<<endl;
+		cout<<" 4. MOSTRAR (POSTORDEN)"<<endl;
+		cout<<" 5. GRADO DE LOS NODOS"<<endl;
+		cout<<" 6. GRADO DEL ARBOL"<<endl;
+		cout<<" 7. NIVEL DE CADA NODO"<<endl;
+		cout<<" 8. ALTURA DEL ARBOL"<<endl;
+		cout<<" 9. SALIR"<<endl;
+		cout<<"ELIJA UNA OPCION: "; cin>>op;
+		system("cls");
+		switch(op){
+			case 1:
+				crearArbol(raiz);
+				break;
+			case 2:
+                if (raiz == NULL) {
+                    cout << endl << "PREORDEN: " << endl;
+                    preorden(raiz);
+                    cout << endl;
+                } else {
+                    cout << "El árbol está vacío." << endl;
+                }
+                break;
+			case 3:
+				cout<<"INORDEN:"<<endl;
+				inorden(raiz);
+				break;
+			case 4:
+				cout<<endl<<"POSTORDEN: "<<endl;
+				postorden(raiz);
+				break;
+			case 5:
+				cout<<endl<<"GRADO DE LOS NODOS: "<<endl;
+				gradoNodo(raiz);
+				break;
+			case 6:
+				cout<<endl<<"GRADO DEL ARBOL: ";
+				grado_Arbol(raiz, gradoMayor);
+				cout<<gradoMayor<<endl;
+				break;
+			case 7:
+				cout<<endl<<"NIVEL DE LOS NODOS: "<<endl;
+				nivelNodo(raiz, 1);
+				break;
+			case 8:
+				cout<<endl<<"ALTURA DEL ARBOL: ";
+				nivel_Arbol(raiz, 1, nivelMayor);
+				cout<<nivelMayor<<endl;
+				break;
+			case 9:
+				cout<<"SALIENDO..."<<endl;
+				break;
+			default:
+				cout<<"OPCION INCORRECTA..."<<endl;
+				break;			
+		}
+		system("pause");	
+	}while(op!=9);
+	
+
 	
 	return 0;
 }
