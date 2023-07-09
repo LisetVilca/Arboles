@@ -117,15 +117,15 @@ void nivel_Arbol(nodo *raiz, int nivel, int &nivelMayor) {
 }
 
 
+
 int main(){
 	nodo *raiz = NULL;
 	raiz = new(nodo);
 	int gradoMayor=0;
 	int nivelMayor=1;
 	int op;
-	
-				
-	
+	int aux = 0;
+
 	do{
 		system("cls");
 		cout<<"        M  E  N  U      "<<endl;
@@ -141,26 +141,37 @@ int main(){
 		cout<<" 9. SALIR"<<endl;
 		cout<<"ELIJA UNA OPCION: "; cin>>op;
 		system("cls");
+		
+		 if (op != 1 && aux==0 && op<9) {
+            cout << "Primero debe crear el arbol" << endl;
+            system("pause");
+            continue; //para pasar a la siguiente iteración del bucle sin ejecutar el código restante en el bloque de bucle actual.
+        }
+        
 		switch(op){
 			case 1:
-				crearArbol(raiz);
+				if(aux==0){
+					crearArbol(raiz);
+					aux = 1;
+				}
+				else{
+					cout<<"EL ARBOL YA FUE CREADO"<<endl;
+				}					
 				break;
 			case 2:
-                if (raiz == NULL) {
-                    cout << endl << "PREORDEN: " << endl;
-                    preorden(raiz);
-                    cout << endl;
-                } else {
-                    cout << "El árbol está vacío." << endl;
-                }
+                cout << endl << "PREORDEN: " << endl;
+                preorden(raiz);
+                cout << endl;
                 break;
 			case 3:
 				cout<<"INORDEN:"<<endl;
 				inorden(raiz);
+                cout << endl;
 				break;
 			case 4:
 				cout<<endl<<"POSTORDEN: "<<endl;
 				postorden(raiz);
+                cout << endl;
 				break;
 			case 5:
 				cout<<endl<<"GRADO DE LOS NODOS: "<<endl;
@@ -182,15 +193,10 @@ int main(){
 				break;
 			case 9:
 				cout<<"SALIENDO..."<<endl;
-				break;
-			default:
-				cout<<"OPCION INCORRECTA..."<<endl;
-				break;			
+				break;		
 		}
 		system("pause");	
 	}while(op!=9);
-	
 
-	
 	return 0;
 }
